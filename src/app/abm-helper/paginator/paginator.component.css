@@ -1,0 +1,13 @@
+.page-number{
+    max-width: 30px;
+    border:none;
+    text-align: center;
+}
+
+.font-short-space{
+    letter-spacing: -25em;
+}
+
+.space-left{
+    margin-left:10px;
+}

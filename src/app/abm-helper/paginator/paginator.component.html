@@ -1,0 +1,8 @@
+<div class="vertical-space pull-right">
+  {{page}} {{of_text}} {{pages}}
+  <button class="btn btn-default space-left" [class.disabled]="!previousEnabled()" [disabled] = "!previousEnabled()" (click)="_movePrevious()"> <span class="glyphicon glyphicon-chevron-left"></span> </button>
+
+  <input type="text" name="page" class="page-number" [(ngModel)]="page">
+  
+  <button class="btn btn-default" [class.disabled]="!nextEnabled()" [disabled]="!nextEnabled()" (click)="_moveNext()"> <span class="glyphicon glyphicon-chevron-right"></span> </button>
+</div>
