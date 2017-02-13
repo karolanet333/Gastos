@@ -1,22 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import {AbmService} from 'app/abm-helper/abm.service';
-import {AbmMapper} from 'app/abm-helper/abm-mapper';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import {RubroEfectivoService} from '../rubro-efectivo.service';
 import {Router} from '@angular/router';
+import {RubroEfectivo} from '../rubro-efectivo'
 declare var $:any;
 
 @Component({
   selector: 'app-rubro-efectivo-add',
   templateUrl: './rubro-efectivo-add.component.html',
   styleUrls: ['./rubro-efectivo-add.component.css'],
-  providers: [AbmService]
+  providers: [RubroEfectivoService]
 })
 export class RubroEfectivoAddComponent implements OnInit {
 
-  abmMapper = new AbmMapper();
+  
 
-  constructor(private abmService: AbmService, private router: Router) { 
-    this.abmMapper.initialize('rubro');
-    abmService.initialize('rubro-efectivo');
+  item = new RubroEfectivo('', '', '');
+
+  constructor(private service: RubroEfectivoService, private router: Router) { 
   }
 
   ngOnInit() {
@@ -26,15 +26,15 @@ export class RubroEfectivoAddComponent implements OnInit {
   }
 
   onSubmit(){
-    this.abmMapper.add();
-    this.abmService.add(this.abmMapper.dbModel);
+    
+    this.service.add(this.item);
     
     this.closeModal();
   }
 
   closeModal(){
     setTimeout(()=>{
-      $('#abmPopup .close').click()
+      $("#abmPopup .close").click()
       this.router.navigate(['/rubro-efectivo']);
     });
   }

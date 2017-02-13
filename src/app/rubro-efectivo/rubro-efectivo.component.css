@@ -1,3 +1,12 @@
 .btn{
     margin-left: 10px;
 }
+.vertical-space{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#search{
+    width: 50%;
+    min-width: 300px;
+}

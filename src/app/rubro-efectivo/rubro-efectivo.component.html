@@ -1,16 +1,24 @@
-<div class='well'>
-    <h2>Rubros en Efectivo</h2>
+<div class="well">
+    <h2>Rubros del Efectivo</h2>
 </div>
 
-<ul class='list-group'>
-    <li class='list-group-item' *ngFor='let item of abmMapper.listVM'>
-        {{item.rubro}}  
-        <button class='btn btn-danger btn-xs pull-right' (click)='delete(item.id)'>Eliminar</button>
-        <button class='btn btn-warning btn-xs pull-right' [routerLink]="['edit', item.id]">Modificar</button>
+<div class="vertical-space">
+    <input type="text" #search id="search" class="form-control" placeholder="Search">
+</div>
+
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of filteredItems">
+         {{item.rubro}}  
+        <button class="btn btn-danger btn-xs pull-right" (click)="delete(item.$key)">Eliminar</button>
+        <button class="btn btn-warning btn-xs pull-right" [routerLink]="['edit', item.$key]">Modificar</button>
     </li>
 </ul>
 
-<button class='btn btn-success' routerLink='./add'>Agregar Rubro Efectivo</button>
+<app-paginator [rows] = "itemsCount" [rowsPerPage] = "generalConfig.rowsPerPage" (moveNext)="onMoveNext($event)" (movePrevious)="onMovePrevious($event)"></app-paginator>
+
+<button class="btn btn-success" routerLink='./add'>Agregar Rubro Efectivo</button>
 
 <router-outlet></router-outlet>
 
+
+<!--[rows] = "abmMapper.listVM.length" (pageChange)="onPageChange($event)"-->
