@@ -7,6 +7,14 @@
 }
 
 #search{
-    width: 50%;
-    min-width: 300px;
+    /*min-width: 300px;*/
+    display: inline-block;
+}
+
+#outer-search{
+    padding-right:50px;
+}
+
+#add-button{
+    margin-left:10px;
 }

@@ -1,3 +1,69 @@
-<p>
-  efectivo works!
-</p>
+<div class="well">
+    <h2>Movimientos en Efectivo</h2>
+</div>
+
+
+
+<div class="vertical-space">
+
+    <div class="input-group">
+        <input type="text" #search id="search" class="form-control" placeholder="Search">
+        <span class="input-group-btn">
+            <button class="btn btn-success" type="button" id="add-button" routerLink='./add' title="Agregar"><span class="glyphicon glyphicon-plus"></span></button>
+        </span>
+    </div>
+    
+</div>
+
+<table class="table">
+  <tr>
+    <td id="td-fecha-mov">Fecha Movimiento</td>
+    <td id="td-rubro">Rubro</td>
+    <td id="td-mov">Movimiento</td>
+    <td id="td-entrada" id="td-entrada"  >Entrada</td>
+    <td id="td-salida" id="td-salida"  >Salida</td>
+    <td id="td-saldo">Saldo</td>
+    <td id="td-buttons"></td>
+  </tr>
+
+  <tr *ngFor="let item of filteredItems">
+    <td >{{generalHelper.getDateFromStr(item.fechaMov) | date:'dd-MM-yyyy'}}</td>
+    <td>{{item.rubro}}</td>
+    <td>{{item[sortByFieldOrig]}}</td>
+    <!--Entrada-->
+    <ng-container *ngIf="item.signo == '+'">
+      <td class="text-right"  >{{item.monto | numeric:","}}</td>
+    </ng-container>
+    <ng-container *ngIf="item.signo != '+'">
+      <td class="text-right"  > </td>
+    </ng-container>
+    <!--Salida-->
+    <ng-container  *ngIf="item.signo == '-'">
+      <td class="text-right"  >{{item.monto | numeric:","}}</td>
+    </ng-container>
+    <ng-container *ngIf="item.signo != '-'">
+      <td  class="text-right"  > </td>
+    </ng-container>
+    <!--Saldo-->
+    <td class="text-right">{{item.saldo | numeric:","}}</td>
+    <td >
+        <button class="btn btn-danger btn-xs pull-right" (click)="delete(item.$key)" title="Eliminar"><span class="glyphicon glyphicon-remove"></span></button>
+        <button class="btn btn-warning btn-xs pull-right" [routerLink]="['edit', item.$key]" title="Editar"><span class="glyphicon glyphicon-pencil"></span></button>
+    </td>
+  </tr>
+</table>
+
+<!--
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of filteredItems">
+         Fecha Ingreso: {{item["fechaIngreso"] }}. Item: {{item[sortByFieldOrig]}}    
+        <button class="btn btn-danger btn-xs pull-right" (click)="delete(item.$key)" title="Eliminar"><span class="glyphicon glyphicon-remove"></span></button>
+        <button class="btn btn-warning btn-xs pull-right" [routerLink]="['edit', item.$key]" title="Editar"><span class="glyphicon glyphicon-pencil"></span></button>
+    </li>
+</ul>-->
+
+
+<router-outlet></router-outlet>
+
+
+<!--[rows] = "abmMapper.listVM.length" (pageChange)="onPageChange($event)"-->

@@ -1,0 +1,53 @@
+  <!-- Modal -->
+  <div class="modal fade" id="abmPopup" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" (click)="closeModal()">&times;</button>
+          <h4 class="modal-title">Agregar Movimiento en Efectivo</h4>
+        </div>
+        <div class="modal-body">
+
+
+            <form (submit)="onSubmit()">
+
+              <div class="form-group">
+                <label for="efectivo">Rubro</label>
+                <select name="rubro" [(ngModel)]="item.rubro" class="form-control">
+                  <option [value]="itemCombo.rubro" *ngFor="let itemCombo of itemsCombo">{{itemCombo.rubro}}</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="efectivo">Movimiento en Efectivo</label>
+                <input type="text" class="form-control" name="efectivo" [(ngModel)]="item.efectivo">
+              </div>
+
+              <div class="form-group">
+                <label for="fechaMov">Fecha del Movimiento</label>
+                <input type="date" class="form-control" name="fechaMov" [(ngModel)]="item.fechaMov">
+              </div>
+
+              <div class="form-group">
+                <label for="fechaMov">Monto</label>
+                <input type="number" class="form-control" name="monto" id="monto" value="item.monto" [(ngModel)]="item.monto" step="0.01" min="0">
+              </div>
+
+              <div class="form-group">
+                <button class="btn btn-success" type="submit">Aceptar</button>
+              </div>
+
+            </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+

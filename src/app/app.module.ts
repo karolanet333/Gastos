@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import {AngularFireModule} from 'angularfire2';
 import { firebaseConfig } from '../environments/firebase.config';
 import {routing} from './app.routing';
+import {NumericPipe} from './helpers/numeric.pipe';
 
 
 
@@ -20,10 +21,13 @@ import { RubroBancoEditComponent } from './rubro-banco/rubro-banco-edit/rubro-ba
 import { RubroEfectivoAddComponent } from './rubro-efectivo/rubro-efectivo-add/rubro-efectivo-add.component';
 import { RubroEfectivoEditComponent } from './rubro-efectivo/rubro-efectivo-edit/rubro-efectivo-edit.component';
 import { PaginatorComponent } from './abm-helper/paginator/paginator.component';
+import { EfectivoAddComponent } from './efectivo/efectivo-add/efectivo-add.component';
+import { EfectivoEditComponent } from './efectivo/efectivo-edit/efectivo-edit.component';
 
 
 @NgModule({
   declarations: [
+    NumericPipe,
     AppComponent,
     RubroBancoComponent,
     RubroEfectivoComponent,
@@ -35,7 +39,9 @@ import { PaginatorComponent } from './abm-helper/paginator/paginator.component';
     RubroBancoEditComponent,
     RubroEfectivoAddComponent,
     RubroEfectivoEditComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    EfectivoAddComponent,
+    EfectivoEditComponent
   ],
   imports: [
     BrowserModule,

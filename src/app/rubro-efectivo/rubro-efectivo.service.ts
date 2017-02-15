@@ -17,48 +17,20 @@ export class RubroEfectivoService {
     this.entityName = 'rubro-efectivo';
   }
 
-  private getList(query: FirebaseListFactoryOpts = null) : FirebaseListObservable<RubroEfectivo[]>{
+  private getList(query: FirebaseListFactoryOpts = null) {
     var list$ = this.af.database.list(this.entityName, query);
     return list$
   }
 
-  findAll() : Observable<RubroEfectivo[]>{
-    var list$ = this.af.database.list(this.entityName);
-    return list$.map(RubroEfectivo.fromJsonArray);
+  private getObject(key: string){
+    return this.af.database.object('/' + this.entityName + '/' + key);
   }
 
-  count() : Observable<number> {
-    var list$ = this.af.database.list(this.entityName).map(list => list.length);
-    return list$;
-  }
-
-  loadPage(pageNumber, rowsPerPage: number, value: string = "", moveNext: boolean) : Observable<RubroEfectivo[]>{
-    var list$;
-
-    if (pageNumber == 1){
-      list$ = this.getList( {query: {
-                orderByChild: this.sortyByField,
-                limitToFirst: rowsPerPage
+  loadPage() : Observable<RubroEfectivo[]>{
+    var list$ = this.getList( {query: {
+                orderByChild: this.sortyByField
               }});
-    }
-    else {
-      if (moveNext){
-        list$ = this.getList( {query: {
-          orderByChild: this.sortyByField,
-          startAt: value,
-          limitToFirst: rowsPerPage + 1
-        }}).map(items => items.slice(1, items.length));
-      
-      } else {
-        list$ = this.getList( {query: {
-          orderByChild: this.sortyByField,
-          endAt: value,
-          limitToLast: rowsPerPage + 1
-        }}).map(items => items.slice(0, items.length - 1));
-      
-      }
-    }
-
+    
     return list$.map(RubroEfectivo.fromJsonArray);
   }
 
@@ -72,7 +44,7 @@ export class RubroEfectivoService {
     var key = item.$key;
     delete item.$key;
     item.rubro_lower = item.rubro.toLowerCase();
-    this.af.database.object('/' + this.entityName + '/' + key).update(item);
+    this.getObject(key).update(item);
   }
 
   delete(key: string){
@@ -80,8 +52,7 @@ export class RubroEfectivoService {
   }
 
   getByKey(key: string) : Observable<RubroEfectivo>{
-    var item$ = this.af.database.object('/' + this.entityName + '/' + key).map(RubroEfectivo.fromJson);
-
+    var item$ = this.getObject(key).map(RubroEfectivo.fromJson);
     return item$;
   }
 }

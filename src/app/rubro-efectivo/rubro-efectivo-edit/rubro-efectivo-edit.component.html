@@ -1,7 +1,3 @@
-
-
-
-
   <!-- Modal -->
   <div class="modal fade" id="abmPopup" role="dialog">
     <div class="modal-dialog">
@@ -15,10 +11,20 @@
         <div class="modal-body">
 
               <form (submit)="onSubmit()">
+
                 <div class="form-group">
                   <label for="rubro">Rubro Efectivo</label>
                   <input type="text" class="form-control" name="rubro" [(ngModel)]="item.rubro">
                 </div>
+
+                <div class="form-group">
+                  <label for="signo">Signo</label>
+                  <select name="signo" [(ngModel)]="item.signo" class="form-control">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                  </select>
+                </div>
+
                 <div class="form-group">
                   <button class="btn btn-success" type="submit">Aceptar</button>
                 </div>

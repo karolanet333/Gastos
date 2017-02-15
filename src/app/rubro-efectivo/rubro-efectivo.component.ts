@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import {Router} from '@angular/router';
 import {Subscription, Observable} from 'rxjs/Rx';
 import {RubroEfectivoService} from './rubro-efectivo.service';
@@ -32,6 +32,7 @@ export class RubroEfectivoComponent implements OnInit, OnDestroy {
 
     var search;
 
+    //search
     this.searchSubscrip = Observable.fromEvent($('#search'), 'keyup').subscribe(
       e => {
         console.log(e["target"]["value"]);
@@ -40,10 +41,7 @@ export class RubroEfectivoComponent implements OnInit, OnDestroy {
       err => console.log(err)
     );
     
-    this.service.count().subscribe(
-      count => this.itemsCount = count
-    );
-    this.loadPage(1);
+    this.loadPage();
 
   }
 
@@ -56,8 +54,8 @@ export class RubroEfectivoComponent implements OnInit, OnDestroy {
       
   }
 
-  loadPage(pageNumber: number, value: string = "", moveNext: boolean = true){
-    this.itemsSubscrip = this.service.loadPage(pageNumber, GeneralConfig.rowsPerPage, value, moveNext).subscribe(
+  loadPage(){
+    this.itemsSubscrip = this.service.loadPage().subscribe(
       items => {
         
         this.items = items;
@@ -71,33 +69,6 @@ export class RubroEfectivoComponent implements OnInit, OnDestroy {
     this.service.delete($key)
   }
 
-  onMoveNext(page:number){
-    var value = "";
-    
-    if (page > 1){
-      value = this.items[this.items.length - 1].rubro_lower;
-    }
-
-    this.loadPage(page, value);
-  }
-
-  onMovePrevious(page:number){
-    var value = "";
-    
-    value = this.items[0].rubro_lower;
-    
-    this.loadPage(page, value, false);
-  }
-
-  onPageChange(page: number){
-    var value = "";
-    
-    if (page > 1){
-      value = this.items[this.items.length - 1].rubro_lower;
-    }
-
-    this.loadPage(page, value);
-  }
 
   ngOnDestroy(){
     this.searchSubscrip.unsubscribe();

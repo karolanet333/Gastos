@@ -14,7 +14,7 @@ export class RubroEfectivoAddComponent implements OnInit {
 
   
 
-  item = new RubroEfectivo('', '', '');
+  item = new RubroEfectivo('', '', '', '');
 
   constructor(private service: RubroEfectivoService, private router: Router) { 
   }

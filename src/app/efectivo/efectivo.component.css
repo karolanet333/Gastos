@@ -1,0 +1,59 @@
+.btn{
+    margin-left: 10px;
+}
+.vertical-space{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#search{
+    /*min-width: 300px;*/
+    display: inline-block;
+}
+
+#outer-search{
+    padding-right:50px;
+}
+
+#add-button{
+    margin-left:10px;
+}
+
+table{
+    table-layout: fixed;
+    width:100%;
+}
+
+#td-fecha-mov{
+    width: 150px;
+}
+
+#td-rubro{
+    width: 150px;
+}
+
+#td-entrada{
+    width: 100px;
+    max-width:150px;
+    text-align:right;
+}
+
+#td-salida{
+    width: 100px;
+    max-width:150px;
+    text-align:right;
+}
+
+#td-saldo{
+    width: 100px;
+    max-width:150px;
+    text-align:right;
+}
+
+#td-buttons{
+    width: 110px;
+}
+
+.text-right{
+    text-align:right;
+}

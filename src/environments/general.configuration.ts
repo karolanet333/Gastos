@@ -1,3 +1,4 @@
 export const GeneralConfig = {
-    rowsPerPage: 10
+    rowsPerPage: 50,
+    numberSeparator: '.'
 };
